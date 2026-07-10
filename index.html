@@ -3,291 +3,386 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SheldonAI — Dashboard</title>
+<title>SheldonAI — Analytics</title>
 <style>
+  /* ── Tokens ── */
   :root {
-    --bg:          #F6F8FA;
-    --surface:     #FFFFFF;
-    --border:      #D0D7DE;
-    --text:        #1F2328;
-    --muted:       #57606A;
-    --accent:      #0969DA;
-    --accent-soft: #DDF4FF;
-    --green:       #1A7F37;
-    --green-soft:  #DAFBE1;
-    --red:         #CF222E;
-    --red-soft:    #FFEBE9;
-    --amber:       #9A6700;
-    --amber-soft:  #FFF8C5;
-    --shadow:      0 1px 3px rgba(31,35,40,.12);
+    --brand:        #004033;
+    --brand-mid:    #005C47;
+    --brand-light:  #E6F2EF;
+    --accent:       #00A876;
+    --accent-dim:   #D0EFE7;
+
+    --bg:           #F0F3F7;
+    --surface:      #FFFFFF;
+    --surface-2:    #F7F9FC;
+    --border:       #DDE3EC;
+    --border-soft:  #EDF0F5;
+
+    --text:         #111827;
+    --text-2:       #4B5563;
+    --text-3:       #9CA3AF;
+
+    --green:        #047857;
+    --green-bg:     #ECFDF5;
+    --red:          #B91C1C;
+    --red-bg:       #FEF2F2;
+    --amber:        #92400E;
+    --amber-bg:     #FFFBEB;
+
+    --shadow-sm:    0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.08);
+    --shadow-md:    0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -1px rgba(0,0,0,.05);
+    --radius:       10px;
   }
+
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg:          #0D1117;
-      --surface:     #161B22;
-      --border:      #30363D;
-      --text:        #E6EDF3;
-      --muted:       #7D8590;
-      --accent:      #2F81F7;
-      --accent-soft: #121D2F;
-      --green:       #3FB950;
-      --green-soft:  #0D1F0F;
-      --red:         #F85149;
-      --red-soft:    #1F0D0D;
-      --amber:       #D29922;
-      --amber-soft:  #1F1A0D;
-      --shadow:      0 1px 3px rgba(0,0,0,.4);
+      --brand:        #00C896;
+      --brand-mid:    #00A876;
+      --brand-light:  #0A2A1E;
+      --accent:       #00C896;
+      --accent-dim:   #0A2A1E;
+
+      --bg:           #0A1A14;
+      --surface:      #0F2018;
+      --surface-2:    #122517;
+      --border:       #1A3528;
+      --border-soft:  #152E20;
+
+      --text:         #E4EDE8;
+      --text-2:       #8BA89A;
+      --text-3:       #4A6558;
+
+      --green:        #34D399;
+      --green-bg:     #0A2018;
+      --red:          #F87171;
+      --red-bg:       #1F0A0A;
+      --amber:        #FBBF24;
+      --amber-bg:     #1F1506;
+
+      --shadow-sm:    0 1px 2px rgba(0,0,0,.3);
+      --shadow-md:    0 4px 12px rgba(0,0,0,.4);
     }
   }
+
   :root[data-theme="light"] {
-    --bg: #F6F8FA; --surface: #FFFFFF; --border: #D0D7DE;
-    --text: #1F2328; --muted: #57606A;
-    --accent: #0969DA; --accent-soft: #DDF4FF;
-    --green: #1A7F37; --green-soft: #DAFBE1;
-    --red: #CF222E; --red-soft: #FFEBE9;
-    --amber: #9A6700; --amber-soft: #FFF8C5;
-    --shadow: 0 1px 3px rgba(31,35,40,.12);
+    --brand: #004033; --brand-mid: #005C47; --brand-light: #E6F2EF;
+    --accent: #00A876; --accent-dim: #D0EFE7;
+    --bg: #F0F3F7; --surface: #FFFFFF; --surface-2: #F7F9FC;
+    --border: #DDE3EC; --border-soft: #EDF0F5;
+    --text: #111827; --text-2: #4B5563; --text-3: #9CA3AF;
+    --green: #047857; --green-bg: #ECFDF5;
+    --red: #B91C1C; --red-bg: #FEF2F2;
+    --amber: #92400E; --amber-bg: #FFFBEB;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.08);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,.07),0 2px 4px -1px rgba(0,0,0,.05);
   }
   :root[data-theme="dark"] {
-    --bg: #0D1117; --surface: #161B22; --border: #30363D;
-    --text: #E6EDF3; --muted: #7D8590;
-    --accent: #2F81F7; --accent-soft: #121D2F;
-    --green: #3FB950; --green-soft: #0D1F0F;
-    --red: #F85149; --red-soft: #1F0D0D;
-    --amber: #D29922; --amber-soft: #1F1A0D;
-    --shadow: 0 1px 3px rgba(0,0,0,.4);
+    --brand: #00C896; --brand-mid: #00A876; --brand-light: #0A2A1E;
+    --accent: #00C896; --accent-dim: #0A2A1E;
+    --bg: #0A1A14; --surface: #0F2018; --surface-2: #122517;
+    --border: #1A3528; --border-soft: #152E20;
+    --text: #E4EDE8; --text-2: #8BA89A; --text-3: #4A6558;
+    --green: #34D399; --green-bg: #0A2018;
+    --red: #F87171; --red-bg: #1F0A0A;
+    --amber: #FBBF24; --amber-bg: #1F1506;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.3);
+    --shadow-md: 0 4px 12px rgba(0,0,0,.4);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    font-family: -apple-system, 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* ── Header ── */
   header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px;
+    background: #004033;
+    padding: 0 32px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
     position: sticky;
     top: 0;
-    z-index: 10;
-    box-shadow: var(--shadow);
+    z-index: 20;
   }
+  :root[data-theme="dark"] header { background: #0F2018; border-bottom: 1px solid var(--border); }
+  @media (prefers-color-scheme: dark) { header { background: #0F2018; border-bottom: 1px solid var(--border); } }
+
   .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--text);
-    text-decoration: none;
+    gap: 12px;
   }
-  .logo-icon {
-    width: 28px; height: 28px;
-    background: var(--accent);
-    border-radius: 6px;
+  .logo-mark {
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,.15);
+    border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 15px;
+    font-size: 17px;
   }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.01em;
+  }
+  .logo-sub {
+    font-size: 10px;
+    color: rgba(255,255,255,.55);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
   .header-right {
     display: flex;
     align-items: center;
     gap: 16px;
   }
-  .last-updated {
+  .live-dot {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-size: 12px;
-    color: var(--muted);
-    font-family: 'SFMono-Regular', Consolas, monospace;
+    color: rgba(255,255,255,.6);
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #00C896;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: .4; }
+  }
+  .updated-time {
+    font-size: 12px;
+    color: rgba(255,255,255,.5);
+    font-family: 'SFMono-Regular', 'Cascadia Code', Consolas, monospace;
   }
   .theme-btn {
-    background: none;
-    border: 1px solid var(--border);
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.15);
     border-radius: 6px;
-    color: var(--muted);
+    color: rgba(255,255,255,.8);
     cursor: pointer;
-    padding: 4px 8px;
-    font-size: 14px;
+    padding: 5px 10px;
+    font-size: 13px;
     line-height: 1;
-    transition: background 0.15s, color 0.15s;
+    transition: background .15s;
   }
-  .theme-btn:hover { background: var(--border); color: var(--text); }
+  .theme-btn:hover { background: rgba(255,255,255,.2); }
 
-  /* ── Main ── */
+  /* ── Layout ── */
   main {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 28px 24px 48px;
+    padding: 32px 24px 64px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 32px;
   }
 
-  /* ── Section label ── */
-  .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .06em;
+  /* ── Section ── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .07em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 12px;
+    color: var(--text-2);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
   }
 
-  /* ── Stat grid ── */
-  .stat-grid {
+  /* ── KPI Grid ── */
+  .kpi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
   }
-  .stat-card {
+  .kpi {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 18px 20px;
-    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    padding: 20px 22px 18px;
+    box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
   }
-  .stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 500;
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--brand);
+    opacity: .6;
   }
-  .stat-value {
-    font-size: 32px;
-    font-weight: 700;
+  .kpi.green::before { background: var(--green); }
+  .kpi.red::before   { background: var(--red); }
+  .kpi.amber::before { background: var(--amber); }
+
+  .kpi-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .kpi-value {
+    font-size: 38px;
+    font-weight: 800;
     font-variant-numeric: tabular-nums;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    letter-spacing: -.03em;
+    line-height: 1;
     color: var(--text);
   }
-  .stat-value.green { color: var(--green); }
-  .stat-value.red   { color: var(--red); }
-  .stat-value.amber { color: var(--amber); }
-  .stat-value.accent { color: var(--accent); }
-  .stat-sub {
-    font-size: 11px;
-    color: var(--muted);
+  .kpi-value.brand { color: var(--brand); }
+  .kpi-value.green { color: var(--green); }
+  .kpi-value.red   { color: var(--red); }
+  .kpi-value.amber { color: var(--amber); }
+  .kpi-desc {
+    font-size: 12px;
+    color: var(--text-3);
     margin-top: 2px;
   }
 
-  /* ── Taxa badge ── */
-  .taxa-bar-wrap {
-    margin-top: 8px;
-  }
-  .taxa-bar-bg {
-    height: 6px;
-    border-radius: 99px;
-    background: var(--border);
-    overflow: hidden;
-    margin-top: 4px;
-  }
-  .taxa-bar-fill {
-    height: 100%;
-    border-radius: 99px;
-    background: var(--green);
-    transition: width 0.6s ease;
-  }
-
-  /* ── Feedback cards ── */
-  .feedback-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
-  }
-  .fb-card {
+  /* ── Accuracy card ── */
+  .accuracy-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px 20px;
-    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 24px 28px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 40px;
+    flex-wrap: wrap;
   }
-  .fb-icon {
-    font-size: 24px;
-    flex-shrink: 0;
-    line-height: 1;
-  }
-  .fb-info { flex: 1; min-width: 0; }
-  .fb-value {
-    font-size: 26px;
-    font-weight: 700;
+  .accuracy-left { flex-shrink: 0; }
+  .accuracy-pct {
+    font-size: 64px;
+    font-weight: 800;
     font-variant-numeric: tabular-nums;
-    line-height: 1.1;
-    color: var(--text);
-  }
-  .fb-label { font-size: 12px; color: var(--muted); }
-
-  /* ── Taxa card special ── */
-  .taxa-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px 20px;
-    box-shadow: var(--shadow);
-    grid-column: span 2;
-  }
-  @media (max-width: 600px) { .taxa-card { grid-column: span 1; } }
-  .taxa-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .taxa-value {
-    font-size: 36px;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
+    letter-spacing: -.04em;
     line-height: 1;
     color: var(--green);
   }
-  .taxa-unit { font-size: 16px; color: var(--muted); }
-  .taxa-desc { font-size: 12px; color: var(--muted); }
+  .accuracy-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-top: 4px;
+  }
+  .accuracy-right { flex: 1; min-width: 200px; }
+  .acc-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-2);
+    margin-bottom: 8px;
+  }
+  .acc-bar-bg {
+    height: 10px;
+    border-radius: 99px;
+    background: var(--border);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .acc-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--brand-mid), var(--accent));
+    transition: width .8s cubic-bezier(.22,1,.36,1);
+  }
+  .acc-breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .acc-item {
+    background: var(--surface-2);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .acc-item-val {
+    font-size: 22px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+  .acc-item-val.green { color: var(--green); }
+  .acc-item-val.red   { color: var(--red); }
+  .acc-item-val.amber { color: var(--amber); }
+  .acc-item-lbl {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 3px;
+  }
 
-  /* ── Pending table ── */
-  .card {
+  /* ── Table card ── */
+  .table-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
     overflow: hidden;
   }
-  .card-header {
-    padding: 14px 20px;
+  .table-header {
+    padding: 16px 22px;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .card-title {
+  .table-title {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--text);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
-  .badge {
+  .chip {
     display: inline-flex;
     align-items: center;
-    padding: 2px 8px;
+    padding: 2px 9px;
     border-radius: 99px;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: .03em;
   }
-  .badge-red { background: var(--red-soft); color: var(--red); }
-  .badge-amber { background: var(--amber-soft); color: var(--amber); }
-  .badge-green { background: var(--green-soft); color: var(--green); }
+  .chip-red    { background: var(--red-bg);   color: var(--red); }
+  .chip-green  { background: var(--green-bg); color: var(--green); }
+  .chip-amber  { background: var(--amber-bg); color: var(--amber); }
 
   .table-wrap { overflow-x: auto; }
   table {
@@ -295,85 +390,105 @@
     border-collapse: collapse;
     font-size: 13px;
   }
-  th {
+  thead th {
+    padding: 10px 22px;
     text-align: left;
-    padding: 10px 20px;
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .04em;
+    font-weight: 700;
+    letter-spacing: .06em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--text-3);
+    background: var(--surface-2);
     border-bottom: 1px solid var(--border);
     white-space: nowrap;
   }
-  td {
-    padding: 12px 20px;
-    border-bottom: 1px solid var(--border);
+  tbody td {
+    padding: 13px 22px;
+    border-bottom: 1px solid var(--border-soft);
     vertical-align: top;
-    max-width: 420px;
+    color: var(--text);
   }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--bg); }
-  .td-muted { color: var(--muted); font-size: 12px; font-family: 'SFMono-Regular', Consolas, monospace; }
-  .empty-state {
-    padding: 32px 20px;
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--surface-2); }
+  .td-mono {
+    font-family: 'SFMono-Regular', 'Cascadia Code', Consolas, monospace;
+    font-size: 12px;
+    color: var(--text-3);
+  }
+  .truncate { max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .empty {
+    padding: 48px 24px;
     text-align: center;
-    color: var(--muted);
-    font-size: 13px;
   }
-  .empty-icon { font-size: 28px; margin-bottom: 8px; }
+  .empty-icon { font-size: 36px; margin-bottom: 12px; }
+  .empty-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .empty-sub   { font-size: 13px; color: var(--text-3); }
 
   /* ── Loading ── */
-  .loading {
+  #loading {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 80px 24px;
-    gap: 12px;
-    color: var(--muted);
-    font-size: 14px;
+    min-height: 60vh;
+    gap: 16px;
+    color: var(--text-3);
   }
   .spinner {
-    width: 32px; height: 32px;
+    width: 36px; height: 36px;
     border: 3px solid var(--border);
-    border-top-color: var(--accent);
+    border-top-color: var(--brand);
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+    animation: spin .7s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   @media (prefers-reduced-motion: reduce) {
-    .spinner { animation: none; }
-    .taxa-bar-fill { transition: none; }
+    .spinner, .dot { animation: none; }
+    .acc-bar-fill { transition: none; }
+  }
+  @media (max-width: 640px) {
+    header { padding: 0 16px; }
+    main { padding: 20px 16px 48px; gap: 24px; }
+    .accuracy-card { gap: 24px; }
+    .accuracy-pct { font-size: 48px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <a class="logo" href="#">
-    <span class="logo-icon">🤖</span>
-    SheldonAI — Dashboard
-  </a>
+  <div class="logo">
+    <div class="logo-mark">🤖</div>
+    <div class="logo-text">
+      <span class="logo-name">SheldonAI</span>
+      <span class="logo-sub">Analytics Dashboard</span>
+    </div>
+  </div>
   <div class="header-right">
-    <span class="last-updated" id="last-updated">—</span>
+    <div class="live-dot">
+      <div class="dot"></div>
+      <span>Ao vivo</span>
+    </div>
+    <span class="updated-time" id="updated-time">—</span>
     <button class="theme-btn" id="theme-btn" aria-label="Alternar tema">☀️</button>
   </div>
 </header>
 
-<main id="main">
-  <div class="loading">
+<main>
+  <div id="loading">
     <div class="spinner"></div>
-    Carregando métricas…
+    <span>Carregando dados…</span>
   </div>
+  <div id="content" style="display:none; flex-direction:column; gap:32px;"></div>
 </main>
 
 <script>
-  // ── Theme toggle ──
+  /* ── Theme ── */
   const root = document.documentElement;
-  const btn = document.getElementById('theme-btn');
-  let theme = localStorage.getItem('sheldon-theme') ||
+  const btn  = document.getElementById('theme-btn');
+  let theme  = localStorage.getItem('sheldon-theme') ||
     (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
   function applyTheme(t) {
@@ -385,121 +500,132 @@
   applyTheme(theme);
   btn.addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark'));
 
-  // ── Data ──
+  /* ── Helpers ── */
   function fmt(iso) {
     if (!iso) return '—';
-    const d = new Date(iso);
-    return d.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric',
-      hour:'2-digit', minute:'2-digit' });
+    return new Date(iso).toLocaleString('pt-BR', {
+      day:'2-digit', month:'2-digit', year:'numeric',
+      hour:'2-digit', minute:'2-digit'
+    });
+  }
+  function fmtDate(iso) {
+    if (!iso) return '—';
+    return new Date(iso).toLocaleDateString('pt-BR', {
+      day:'2-digit', month:'2-digit', year:'numeric'
+    });
+  }
+  function esc(s) {
+    return String(s||'')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
+  /* ── Render ── */
   function render(data) {
-    const b = data.base || {};
+    const b = data.base    || {};
     const f = data.feedback || {};
     const pendentes = f.pendentes_revisao || [];
     const taxa = f.taxa_acerto || 0;
 
-    document.getElementById('last-updated').textContent =
-      'Atualizado em ' + fmt(data.generated_at);
+    document.getElementById('updated-time').textContent = fmt(data.generated_at);
+    document.getElementById('loading').style.display = 'none';
 
-    document.getElementById('main').innerHTML = `
+    const content = document.getElementById('content');
+    content.style.display = 'flex';
+    content.innerHTML = `
       <!-- Base de Conhecimento -->
       <section>
-        <p class="section-label">Base de Conhecimento</p>
-        <div class="stat-grid">
-          <div class="stat-card">
-            <span class="stat-label">Casos documentados</span>
-            <span class="stat-value accent">${b.total_casos ?? '—'}</span>
-            <span class="stat-sub">situações resolvidas</span>
+        <div class="section-head">
+          <span class="section-title">Base de Conhecimento</span>
+          <div class="section-line"></div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <span class="kpi-label">Casos documentados</span>
+            <span class="kpi-value brand">${b.total_casos ?? '—'}</span>
+            <span class="kpi-desc">situações resolvidas registradas</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-label">FAQs</span>
-            <span class="stat-value accent">${b.total_faqs ?? '—'}</span>
-            <span class="stat-sub">perguntas e respostas</span>
+          <div class="kpi">
+            <span class="kpi-label">FAQs</span>
+            <span class="kpi-value brand">${b.total_faqs ?? '—'}</span>
+            <span class="kpi-desc">perguntas e respostas</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-label">Playbooks</span>
-            <span class="stat-value accent">${b.total_playbooks ?? '—'}</span>
-            <span class="stat-sub">procedimentos</span>
+          <div class="kpi">
+            <span class="kpi-label">Playbooks</span>
+            <span class="kpi-value brand">${b.total_playbooks ?? '—'}</span>
+            <span class="kpi-desc">procedimentos documentados</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-label">Última atualização</span>
-            <span class="stat-value" style="font-size:18px;font-weight:600;">${
-              b.ultima_atualizacao ? fmt(b.ultima_atualizacao) : '—'
-            }</span>
-            <span class="stat-sub">da base de conhecimento</span>
+          <div class="kpi">
+            <span class="kpi-label">Última atualização</span>
+            <span class="kpi-value" style="font-size:20px; font-weight:700; color:var(--text-2); letter-spacing:-.01em;">${fmtDate(b.ultima_atualizacao)}</span>
+            <span class="kpi-desc">da base de conhecimento</span>
           </div>
         </div>
       </section>
 
       <!-- Feedback -->
       <section>
-        <p class="section-label">Feedback dos Analistas</p>
-        <div class="feedback-grid">
-          <div class="fb-card">
-            <span class="fb-icon">📊</span>
-            <div class="fb-info">
-              <div class="fb-value">${f.total ?? 0}</div>
-              <div class="fb-label">Avaliações totais</div>
-            </div>
+        <div class="section-head">
+          <span class="section-title">Avaliação das Respostas</span>
+          <div class="section-line"></div>
+        </div>
+        <div class="accuracy-card">
+          <div class="accuracy-left">
+            <div class="accuracy-pct">${taxa}<span style="font-size:28px; font-weight:600; color:var(--text-3)">%</span></div>
+            <div class="accuracy-label">Taxa de Acerto</div>
           </div>
-          <div class="fb-card">
-            <span class="fb-icon">👍</span>
-            <div class="fb-info">
-              <div class="fb-value" style="color:var(--green)">${f.positivos ?? 0}</div>
-              <div class="fb-label">Validadas</div>
+          <div class="accuracy-right">
+            <div class="acc-bar-label">
+              <span>Respostas validadas pelos analistas</span>
+              <span style="font-weight:600">${f.positivos ?? 0} de ${f.total ?? 0}</span>
             </div>
-          </div>
-          <div class="fb-card">
-            <span class="fb-icon">👎</span>
-            <div class="fb-info">
-              <div class="fb-value" style="color:var(--red)">${f.negativos ?? 0}</div>
-              <div class="fb-label">Para revisão</div>
+            <div class="acc-bar-bg">
+              <div class="acc-bar-fill" id="acc-fill" style="width:0%"></div>
             </div>
-          </div>
-          <div class="fb-card">
-            <span class="fb-icon">✏️</span>
-            <div class="fb-info">
-              <div class="fb-value" style="color:var(--amber)">${f.corrigidos ?? 0}</div>
-              <div class="fb-label">Corrigidas</div>
-            </div>
-          </div>
-          <div class="taxa-card">
-            <div class="taxa-row">
-              <span class="taxa-value">${taxa}</span>
-              <span class="taxa-unit">% de acerto</span>
-            </div>
-            <div class="taxa-desc">Respostas validadas com 👍 sobre total avaliado</div>
-            <div class="taxa-bar-wrap">
-              <div class="taxa-bar-bg">
-                <div class="taxa-bar-fill" id="taxa-fill" style="width:0%"></div>
+            <div class="acc-breakdown">
+              <div class="acc-item">
+                <div class="acc-item-val green">👍 ${f.positivos ?? 0}</div>
+                <div class="acc-item-lbl">Validadas</div>
+              </div>
+              <div class="acc-item">
+                <div class="acc-item-val red">👎 ${f.negativos ?? 0}</div>
+                <div class="acc-item-lbl">Para revisão</div>
+              </div>
+              <div class="acc-item">
+                <div class="acc-item-val amber">✏️ ${f.corrigidos ?? 0}</div>
+                <div class="acc-item-lbl">Corrigidas</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Pendentes de Revisão -->
+      <!-- Pendentes -->
       <section>
-        <div class="card">
-          <div class="card-header">
-            <span class="card-title">
-              Pendentes de Revisão
+        <div class="section-head">
+          <span class="section-title">Pendentes de Revisão</span>
+          <div class="section-line"></div>
+        </div>
+        <div class="table-card">
+          <div class="table-header">
+            <span class="table-title">
+              Respostas marcadas com 👎
               ${pendentes.length > 0
-                ? `<span class="badge badge-red">${pendentes.length}</span>`
-                : `<span class="badge badge-green">Tudo ok</span>`}
+                ? `<span class="chip chip-red">${pendentes.length} pendente${pendentes.length > 1 ? 's' : ''}</span>`
+                : `<span class="chip chip-green">Tudo em dia</span>`}
             </span>
           </div>
           ${pendentes.length === 0
-            ? `<div class="empty-state">
+            ? `<div class="empty">
                 <div class="empty-icon">✅</div>
-                Nenhuma resposta pendente de revisão.
+                <div class="empty-title">Nenhuma resposta pendente</div>
+                <div class="empty-sub">Todas as avaliações foram resolvidas.</div>
               </div>`
             : `<div class="table-wrap"><table>
                 <thead>
                   <tr>
-                    <th>Pergunta</th>
-                    <th>Resposta do Sheldon</th>
+                    <th>Pergunta do analista</th>
+                    <th>Prévia da resposta</th>
                     <th>Avaliado por</th>
                     <th>Data</th>
                   </tr>
@@ -507,10 +633,10 @@
                 <tbody>
                   ${pendentes.map(p => `
                     <tr>
-                      <td>${esc(p.pergunta || '—').substring(0, 120)}${(p.pergunta||'').length > 120 ? '…' : ''}</td>
-                      <td class="td-muted">${esc(p.resposta_resumida || '—').substring(0, 100)}…</td>
-                      <td>${esc(p.user_name || '—')}</td>
-                      <td class="td-muted">${fmt(p.timestamp)}</td>
+                      <td class="truncate" style="max-width:300px" title="${esc(p.pergunta)}">${esc((p.pergunta||'—').substring(0,100))}${(p.pergunta||'').length>100?'…':''}</td>
+                      <td class="truncate td-mono" style="max-width:280px" title="${esc(p.resposta_resumida)}">${esc((p.resposta_resumida||'—').substring(0,90))}…</td>
+                      <td style="white-space:nowrap">${esc(p.user_name||'—')}</td>
+                      <td class="td-mono" style="white-space:nowrap">${fmt(p.timestamp)}</td>
                     </tr>`).join('')}
                 </tbody>
               </table></div>`}
@@ -518,35 +644,26 @@
       </section>
     `;
 
-    // Animate bar after render
     requestAnimationFrame(() => {
-      const fill = document.getElementById('taxa-fill');
+      const fill = document.getElementById('acc-fill');
       if (fill) fill.style.width = taxa + '%';
     });
   }
 
-  function esc(str) {
-    return String(str)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;');
-  }
-
+  /* ── Load ── */
   async function load() {
     try {
-      const res = await fetch('./data.json?t=' + Date.now());
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      render(await res.json());
-    } catch (e) {
-      document.getElementById('main').innerHTML =
-        `<div class="loading" style="color:var(--red)">
-          <span style="font-size:28px">⚠️</span>
-          Erro ao carregar dados: ${e.message}
-        </div>`;
+      const r = await fetch('./data.json?t=' + Date.now());
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      render(await r.json());
+    } catch(e) {
+      document.getElementById('loading').innerHTML =
+        `<span style="font-size:32px">⚠️</span><span style="color:var(--red)">Erro ao carregar: ${e.message}</span>`;
     }
   }
 
   load();
-  setInterval(load, 5 * 60 * 1000); // auto-refresh 5 min
+  setInterval(load, 5 * 60 * 1000);
 </script>
 </body>
 </html>
