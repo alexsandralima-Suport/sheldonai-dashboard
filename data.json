@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-07-10T16:16:54.118011",
+  "generated_at": "2026-07-10T16:32:14.498635",
   "base": {
-    "total_casos": 212,
+    "total_casos": 213,
     "total_faqs": 94,
     "total_playbooks": 34,
-    "ultima_atualizacao": "2026-07-08T15:39:55.680870"
+    "ultima_atualizacao": "2026-07-10T16:30:15.404178"
   },
   "feedback": {
-    "total": 0,
-    "positivos": 0,
+    "total": 1,
+    "positivos": 1,
     "negativos": 0,
     "corrigidos": 0,
-    "taxa_acerto": 0,
+    "taxa_acerto": 100.0,
     "pendentes_revisao": []
   }
 }
