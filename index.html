@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SheldonAI — Dashboard</title>
+<style>
+  :root {
+    --bg:          #F6F8FA;
+    --surface:     #FFFFFF;
+    --border:      #D0D7DE;
+    --text:        #1F2328;
+    --muted:       #57606A;
+    --accent:      #0969DA;
+    --accent-soft: #DDF4FF;
+    --green:       #1A7F37;
+    --green-soft:  #DAFBE1;
+    --red:         #CF222E;
+    --red-soft:    #FFEBE9;
+    --amber:       #9A6700;
+    --amber-soft:  #FFF8C5;
+    --shadow:      0 1px 3px rgba(31,35,40,.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:          #0D1117;
+      --surface:     #161B22;
+      --border:      #30363D;
+      --text:        #E6EDF3;
+      --muted:       #7D8590;
+      --accent:      #2F81F7;
+      --accent-soft: #121D2F;
+      --green:       #3FB950;
+      --green-soft:  #0D1F0F;
+      --red:         #F85149;
+      --red-soft:    #1F0D0D;
+      --amber:       #D29922;
+      --amber-soft:  #1F1A0D;
+      --shadow:      0 1px 3px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F6F8FA; --surface: #FFFFFF; --border: #D0D7DE;
+    --text: #1F2328; --muted: #57606A;
+    --accent: #0969DA; --accent-soft: #DDF4FF;
+    --green: #1A7F37; --green-soft: #DAFBE1;
+    --red: #CF222E; --red-soft: #FFEBE9;
+    --amber: #9A6700; --amber-soft: #FFF8C5;
+    --shadow: 0 1px 3px rgba(31,35,40,.12);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D1117; --surface: #161B22; --border: #30363D;
+    --text: #E6EDF3; --muted: #7D8590;
+    --accent: #2F81F7; --accent-soft: #121D2F;
+    --green: #3FB950; --green-soft: #0D1F0F;
+    --red: #F85149; --red-soft: #1F0D0D;
+    --amber: #D29922; --amber-soft: #1F1A0D;
+    --shadow: 0 1px 3px rgba(0,0,0,.4);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: var(--shadow);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .last-updated {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'SFMono-Regular', Consolas, monospace;
+  }
+  .theme-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 14px;
+    line-height: 1;
+    transition: background 0.15s, color 0.15s;
+  }
+  .theme-btn:hover { background: var(--border); color: var(--text); }
+
+  /* ── Main ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  /* ── Stat grid ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  .stat-value.green { color: var(--green); }
+  .stat-value.red   { color: var(--red); }
+  .stat-value.amber { color: var(--amber); }
+  .stat-value.accent { color: var(--accent); }
+  .stat-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── Taxa badge ── */
+  .taxa-bar-wrap {
+    margin-top: 8px;
+  }
+  .taxa-bar-bg {
+    height: 6px;
+    border-radius: 99px;
+    background: var(--border);
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .taxa-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: var(--green);
+    transition: width 0.6s ease;
+  }
+
+  /* ── Feedback cards ── */
+  .feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .fb-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .fb-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .fb-info { flex: 1; min-width: 0; }
+  .fb-value {
+    font-size: 26px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    color: var(--text);
+  }
+  .fb-label { font-size: 12px; color: var(--muted); }
+
+  /* ── Taxa card special ── */
+  .taxa-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    grid-column: span 2;
+  }
+  @media (max-width: 600px) { .taxa-card { grid-column: span 1; } }
+  .taxa-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .taxa-value {
+    font-size: 36px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: var(--green);
+  }
+  .taxa-unit { font-size: 16px; color: var(--muted); }
+  .taxa-desc { font-size: 12px; color: var(--muted); }
+
+  /* ── Pending table ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge-red { background: var(--red-soft); color: var(--red); }
+  .badge-amber { background: var(--amber-soft); color: var(--amber); }
+  .badge-green { background: var(--green-soft); color: var(--green); }
+
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    padding: 10px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    max-width: 420px;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg); }
+  .td-muted { color: var(--muted); font-size: 12px; font-family: 'SFMono-Regular', Consolas, monospace; }
+  .empty-state {
+    padding: 32px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .empty-icon { font-size: 28px; margin-bottom: 8px; }
+
+  /* ── Loading ── */
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .spinner {
+    width: 32px; height: 32px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spinner { animation: none; }
+    .taxa-bar-fill { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">
+    <span class="logo-icon">🤖</span>
+    SheldonAI — Dashboard
+  </a>
+  <div class="header-right">
+    <span class="last-updated" id="last-updated">—</span>
+    <button class="theme-btn" id="theme-btn" aria-label="Alternar tema">☀️</button>
+  </div>
+</header>
+
+<main id="main">
+  <div class="loading">
+    <div class="spinner"></div>
+    Carregando métricas…
+  </div>
+</main>
+
+<script>
+  // ── Theme toggle ──
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-btn');
+  let theme = localStorage.getItem('sheldon-theme') ||
+    (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    btn.textContent = t === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('sheldon-theme', t);
+    theme = t;
+  }
+  applyTheme(theme);
+  btn.addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark'));
+
+  // ── Data ──
+  function fmt(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric',
+      hour:'2-digit', minute:'2-digit' });
+  }
+
+  function render(data) {
+    const b = data.base || {};
+    const f = data.feedback || {};
+    const pendentes = f.pendentes_revisao || [];
+    const taxa = f.taxa_acerto || 0;
+
+    document.getElementById('last-updated').textContent =
+      'Atualizado em ' + fmt(data.generated_at);
+
+    document.getElementById('main').innerHTML = `
+      <!-- Base de Conhecimento -->
+      <section>
+        <p class="section-label">Base de Conhecimento</p>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <span class="stat-label">Casos documentados</span>
+            <span class="stat-value accent">${b.total_casos ?? '—'}</span>
+            <span class="stat-sub">situações resolvidas</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">FAQs</span>
+            <span class="stat-value accent">${b.total_faqs ?? '—'}</span>
+            <span class="stat-sub">perguntas e respostas</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Playbooks</span>
+            <span class="stat-value accent">${b.total_playbooks ?? '—'}</span>
+            <span class="stat-sub">procedimentos</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Última atualização</span>
+            <span class="stat-value" style="font-size:18px;font-weight:600;">${
+              b.ultima_atualizacao ? fmt(b.ultima_atualizacao) : '—'
+            }</span>
+            <span class="stat-sub">da base de conhecimento</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feedback -->
+      <section>
+        <p class="section-label">Feedback dos Analistas</p>
+        <div class="feedback-grid">
+          <div class="fb-card">
+            <span class="fb-icon">📊</span>
+            <div class="fb-info">
+              <div class="fb-value">${f.total ?? 0}</div>
+              <div class="fb-label">Avaliações totais</div>
+            </div>
+          </div>
+          <div class="fb-card">
+            <span class="fb-icon">👍</span>
+            <div class="fb-info">
+              <div class="fb-value" style="color:var(--green)">${f.positivos ?? 0}</div>
+              <div class="fb-label">Validadas</div>
+            </div>
+          </div>
+          <div class="fb-card">
+            <span class="fb-icon">👎</span>
+            <div class="fb-info">
+              <div class="fb-value" style="color:var(--red)">${f.negativos ?? 0}</div>
+              <div class="fb-label">Para revisão</div>
+            </div>
+          </div>
+          <div class="fb-card">
+            <span class="fb-icon">✏️</span>
+            <div class="fb-info">
+              <div class="fb-value" style="color:var(--amber)">${f.corrigidos ?? 0}</div>
+              <div class="fb-label">Corrigidas</div>
+            </div>
+          </div>
+          <div class="taxa-card">
+            <div class="taxa-row">
+              <span class="taxa-value">${taxa}</span>
+              <span class="taxa-unit">% de acerto</span>
+            </div>
+            <div class="taxa-desc">Respostas validadas com 👍 sobre total avaliado</div>
+            <div class="taxa-bar-wrap">
+              <div class="taxa-bar-bg">
+                <div class="taxa-bar-fill" id="taxa-fill" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pendentes de Revisão -->
+      <section>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">
+              Pendentes de Revisão
+              ${pendentes.length > 0
+                ? `<span class="badge badge-red">${pendentes.length}</span>`
+                : `<span class="badge badge-green">Tudo ok</span>`}
+            </span>
+          </div>
+          ${pendentes.length === 0
+            ? `<div class="empty-state">
+                <div class="empty-icon">✅</div>
+                Nenhuma resposta pendente de revisão.
+              </div>`
+            : `<div class="table-wrap"><table>
+                <thead>
+                  <tr>
+                    <th>Pergunta</th>
+                    <th>Resposta do Sheldon</th>
+                    <th>Avaliado por</th>
+                    <th>Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${pendentes.map(p => `
+                    <tr>
+                      <td>${esc(p.pergunta || '—').substring(0, 120)}${(p.pergunta||'').length > 120 ? '…' : ''}</td>
+                      <td class="td-muted">${esc(p.resposta_resumida || '—').substring(0, 100)}…</td>
+                      <td>${esc(p.user_name || '—')}</td>
+                      <td class="td-muted">${fmt(p.timestamp)}</td>
+                    </tr>`).join('')}
+                </tbody>
+              </table></div>`}
+        </div>
+      </section>
+    `;
+
+    // Animate bar after render
+    requestAnimationFrame(() => {
+      const fill = document.getElementById('taxa-fill');
+      if (fill) fill.style.width = taxa + '%';
+    });
+  }
+
+  function esc(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  async function load() {
+    try {
+      const res = await fetch('./data.json?t=' + Date.now());
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      render(await res.json());
+    } catch (e) {
+      document.getElementById('main').innerHTML =
+        `<div class="loading" style="color:var(--red)">
+          <span style="font-size:28px">⚠️</span>
+          Erro ao carregar dados: ${e.message}
+        </div>`;
+    }
+  }
+
+  load();
+  setInterval(load, 5 * 60 * 1000); // auto-refresh 5 min
+</script>
+</body>
+</html>
