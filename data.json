@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-10T16:32:14.498635",
+  "generated_at": "2026-07-10T16:43:50.564276",
   "base": {
     "total_casos": 213,
     "total_faqs": 94,
@@ -12,6 +12,21 @@
     "negativos": 0,
     "corrigidos": 0,
     "taxa_acerto": 100.0,
-    "pendentes_revisao": []
+    "pendentes_revisao": [],
+    "validadores": [
+      {
+        "nome": "U096UKMR1KN",
+        "total": 1
+      }
+    ],
+    "rejeitadores": [],
+    "por_produto": [
+      {
+        "produto": "4biz",
+        "validados": 1,
+        "rejeitados": 0,
+        "corrigidos": 0
+      }
+    ]
   }
 }
