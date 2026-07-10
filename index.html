@@ -524,7 +524,10 @@
   function render(data) {
     const b = data.base    || {};
     const f = data.feedback || {};
-    const pendentes = f.pendentes_revisao || [];
+    const pendentes    = f.pendentes_revisao || [];
+    const validadores  = f.validadores  || [];
+    const rejeitadores = f.rejeitadores || [];
+    const porProduto   = f.por_produto  || [];
     const taxa = f.taxa_acerto || 0;
 
     document.getElementById('updated-time').textContent = fmt(data.generated_at);
@@ -596,6 +599,91 @@
                 <div class="acc-item-lbl">Corrigidas</div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Por Produto -->
+      <section>
+        <div class="section-head">
+          <span class="section-title">Avaliações por Produto</span>
+          <div class="section-line"></div>
+        </div>
+        <div class="table-card">
+          ${!porProduto.length
+            ? `<div class="empty"><div class="empty-icon">📦</div><div class="empty-title">Sem dados ainda</div><div class="empty-sub">As avaliações aparecerão aqui conforme o time usar o feedback.</div></div>`
+            : `<div class="table-wrap"><table>
+                <thead><tr>
+                  <th>Produto</th>
+                  <th>✅ Validados</th>
+                  <th>👎 Revisão</th>
+                  <th>✏️ Corrigidos</th>
+                  <th>Taxa</th>
+                </tr></thead>
+                <tbody>
+                  ${porProduto.map(p => {
+                    const tot = p.validados + p.rejeitados;
+                    const tx = tot > 0 ? Math.round(p.validados/tot*100) : 0;
+                    return `<tr>
+                      <td style="font-weight:600">${esc(p.produto)}</td>
+                      <td style="color:var(--green); font-variant-numeric:tabular-nums">${p.validados}</td>
+                      <td style="color:var(--red);   font-variant-numeric:tabular-nums">${p.rejeitados}</td>
+                      <td style="color:var(--amber); font-variant-numeric:tabular-nums">${p.corrigidos}</td>
+                      <td>
+                        <div style="display:flex;align-items:center;gap:8px">
+                          <div style="width:80px;height:6px;border-radius:99px;background:var(--border);overflow:hidden">
+                            <div style="height:100%;width:${tx}%;background:var(--green);border-radius:99px"></div>
+                          </div>
+                          <span class="td-mono">${tx}%</span>
+                        </div>
+                      </td>
+                    </tr>`;
+                  }).join('')}
+                </tbody>
+              </table></div>`}
+        </div>
+      </section>
+
+      <!-- Analistas -->
+      <section>
+        <div class="section-head">
+          <span class="section-title">Analistas</span>
+          <div class="section-line"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="table-card">
+            <div class="table-header">
+              <span class="table-title">👍 Validaram <span class="chip chip-green">${validadores.length}</span></span>
+            </div>
+            ${!validadores.length
+              ? `<div class="empty"><div class="empty-icon">👥</div><div class="empty-sub">Nenhuma validação ainda</div></div>`
+              : `<div class="table-wrap"><table>
+                  <thead><tr><th>Analista</th><th>Validações</th></tr></thead>
+                  <tbody>
+                    ${validadores.map(v => `
+                      <tr>
+                        <td>${esc(v.nome)}</td>
+                        <td style="font-variant-numeric:tabular-nums;font-weight:600;color:var(--green)">${v.total}</td>
+                      </tr>`).join('')}
+                  </tbody>
+                </table></div>`}
+          </div>
+          <div class="table-card">
+            <div class="table-header">
+              <span class="table-title">👎 Marcaram revisão <span class="chip chip-red">${rejeitadores.length}</span></span>
+            </div>
+            ${!rejeitadores.length
+              ? `<div class="empty"><div class="empty-icon">👥</div><div class="empty-sub">Nenhuma rejeição ainda</div></div>`
+              : `<div class="table-wrap"><table>
+                  <thead><tr><th>Analista</th><th>Rejeições</th></tr></thead>
+                  <tbody>
+                    ${rejeitadores.map(r => `
+                      <tr>
+                        <td>${esc(r.nome)}</td>
+                        <td style="font-variant-numeric:tabular-nums;font-weight:600;color:var(--red)">${r.total}</td>
+                      </tr>`).join('')}
+                  </tbody>
+                </table></div>`}
           </div>
         </div>
       </section>
