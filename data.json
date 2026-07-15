@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T08:15:24.296441",
+  "generated_at": "2026-07-15T10:31:47.446491",
   "base": {
     "total_casos": 213,
     "total_faqs": 94,
@@ -7,8 +7,8 @@
     "ultima_atualizacao": "2026-07-10T16:30:15.404178"
   },
   "feedback": {
-    "total": 2,
-    "positivos": 2,
+    "total": 3,
+    "positivos": 3,
     "negativos": 0,
     "corrigidos": 0,
     "taxa_acerto": 100.0,
@@ -16,14 +16,14 @@
     "validadores": [
       {
         "nome": "U096UKMR1KN",
-        "total": 2
+        "total": 3
       }
     ],
     "rejeitadores": [],
     "por_produto": [
       {
         "produto": "4biz",
-        "validados": 1,
+        "validados": 2,
         "rejeitados": 0,
         "corrigidos": 0
       },
