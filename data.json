@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-21T10:15:24.177289",
+  "generated_at": "2026-07-21T11:15:25.455731",
   "base": {
     "total_casos": 215,
     "total_faqs": 98,
@@ -7,45 +7,45 @@
     "ultima_atualizacao": "2026-07-21"
   },
   "feedback": {
-    "total": 8,
-    "positivos": 4,
+    "total": 11,
+    "positivos": 7,
     "negativos": 4,
     "corrigidos": 4,
-    "taxa_acerto": 50.0,
+    "taxa_acerto": 63.6,
     "pendentes_revisao": [],
     "validadores": [
       {
         "nome": "U096UKMR1KN",
-        "total": 4
+        "total": 7
       }
     ],
     "rejeitadores": [
       {
-        "nome": "U096UKMR1KN",
+        "nome": "Alexsandra Lima",
         "total": 4
       }
     ],
     "por_produto": [
       {
         "produto": "Geral",
-        "validados": 0,
+        "validados": 1,
         "rejeitados": 4,
         "corrigidos": 4
       },
       {
         "produto": "4biz",
+        "validados": 3,
+        "rejeitados": 0,
+        "corrigidos": 0
+      },
+      {
+        "produto": "LM",
         "validados": 2,
         "rejeitados": 0,
         "corrigidos": 0
       },
       {
         "produto": "API",
-        "validados": 1,
-        "rejeitados": 0,
-        "corrigidos": 0
-      },
-      {
-        "produto": "LM",
         "validados": 1,
         "rejeitados": 0,
         "corrigidos": 0
