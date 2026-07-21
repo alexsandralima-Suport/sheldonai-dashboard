@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-07-21T09:15:24.272185",
+  "generated_at": "2026-07-21T10:15:24.177289",
   "base": {
     "total_casos": 215,
-    "total_faqs": 94,
+    "total_faqs": 98,
     "total_playbooks": 34,
-    "ultima_atualizacao": "2026-07-17T17:54:45.028309"
+    "ultima_atualizacao": "2026-07-21"
   },
   "feedback": {
-    "total": 4,
+    "total": 8,
     "positivos": 4,
-    "negativos": 0,
-    "corrigidos": 0,
-    "taxa_acerto": 100.0,
+    "negativos": 4,
+    "corrigidos": 4,
+    "taxa_acerto": 50.0,
     "pendentes_revisao": [],
     "validadores": [
       {
@@ -19,8 +19,19 @@
         "total": 4
       }
     ],
-    "rejeitadores": [],
+    "rejeitadores": [
+      {
+        "nome": "U096UKMR1KN",
+        "total": 4
+      }
+    ],
     "por_produto": [
+      {
+        "produto": "Geral",
+        "validados": 0,
+        "rejeitados": 4,
+        "corrigidos": 4
+      },
       {
         "produto": "4biz",
         "validados": 2,
