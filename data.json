@@ -1,18 +1,66 @@
 {
-  "generated_at": "2026-07-22T11:15:24.595894",
+  "generated_at": "2026-07-22T12:04:56.679571",
   "base": {
     "total_casos": 215,
-    "total_faqs": 98,
+    "total_faqs": 99,
     "total_playbooks": 34,
-    "ultima_atualizacao": "2026-07-21"
+    "ultima_atualizacao": "2026-07-22"
   },
   "feedback": {
-    "total": 11,
+    "total": 15,
     "positivos": 7,
-    "negativos": 4,
-    "corrigidos": 4,
-    "taxa_acerto": 63.6,
-    "pendentes_revisao": [],
+    "negativos": 8,
+    "corrigidos": 5,
+    "pendentes_count": 3,
+    "taxa_acerto": 46.7,
+    "taxa_efetividade": 80.0,
+    "pendentes_revisao": [
+      {
+        "id": "FB-0012",
+        "timestamp": "2026-07-22T11:48:15.025725",
+        "message_ts": "1783455949.552229",
+        "channel": "C03442X3F5M",
+        "thread_ts": "1783455923.828529",
+        "user_id": "U096UKMR1KN",
+        "user_name": "U096UKMR1KN",
+        "emoji": "thumbsdown",
+        "avaliacao": "negativa",
+        "pergunta": "*Tipo Suporte:* \nSuporte Lawsuit Managment\n\n*Nome do cliente:* \nnenhum\n\n*Título:*\nacesso admin OP\n\n*Solicitante:*\n\n\n*Criticidade:*\nMédia\n\n*Tipo de solicitação:*\nUsuários (Cadastro/Permissões/Recebimento de e-mails)\n\n*Descrição da solicitação:*\npessoal, tem como ver se o @laurindo tem o mesmo acesso que eu no OP? ele precisa pegar algumas informações lá, mas não tem acesso as mesmas informaçoes que eu.\n\n*Data de Abertura:*\nJuly 7th, 2026 at 8:23 PM UTC\n\n<!subteam^S01R869ABUH>  :jusbrasilsolucoes:",
+        "resposta_resumida": "_:robot_face: Uso interno do suporte — aguarde a validação do analista._\n\nVerificamos o acesso do @laurindo e realizamos os ajustes necessários para que ele tenha as mesmas permissões que você no OP. Pedimos que ele tente acessar a plataforma novamente e verifique se consegue visualizar todas as inf",
+        "status": "pendente_revisao",
+        "correcao": null
+      },
+      {
+        "id": "FB-0013",
+        "timestamp": "2026-07-22T11:48:26.664244",
+        "message_ts": "1784559847.738359",
+        "channel": "C03442X3F5M",
+        "thread_ts": "1784559815.476749",
+        "user_id": "U096UKMR1KN",
+        "user_name": "U096UKMR1KN",
+        "emoji": "thumbsdown",
+        "avaliacao": "negativa",
+        "pergunta": "*Tipo Suporte:* \nSuporte Lawsuit Managment\n\n*Nome do cliente:* \nFreire, Gerbasi e Bittencourt\n\n*Título:*\ndúvidas da API\n\n*Solicitante:*\n\n\n*Criticidade:*\nMédia\n\n*Tipo de solicitação:*\nDúvidas gerais\n\n*Descrição da solicitação:*\nbom dia, pessoal! tudo bem? o cliente está testando a API para os serviços de: Monitoramento de Processos; Diários Oficiais; Intimações; Autos Processuais.\n\neles levantaram algumas dúvidas: \n1) Jus Brasil tem como obter o texto (inteiro teor) das publicações/intimações de ",
+        "resposta_resumida": "_:robot_face: Uso interno do suporte — aguarde a validação do analista._\n\nOlá! Entendi suas dúvidas sobre a API e vamos te ajudar a esclarecer cada ponto.\n\n1.  **Obter o texto (inteiro teor) das publicações/intimações via API:**\n    *   Para as intimações que fazem parte dos autos processuais, é pos",
+        "status": "pendente_revisao",
+        "correcao": null
+      },
+      {
+        "id": "FB-0014",
+        "timestamp": "2026-07-22T11:48:28.909351",
+        "message_ts": "1784654556.036879",
+        "channel": "C03442X3F5M",
+        "thread_ts": "1784654541.999099",
+        "user_id": "U096UKMR1KN",
+        "user_name": "U096UKMR1KN",
+        "emoji": "thumbsdown",
+        "avaliacao": "negativa",
+        "pergunta": "*Tipo Suporte:* \nSuporte Lawsuit Managment\n\n*Nome do cliente:* \nCS\n\n*Título:*\nLevantamento dos ultimos chamados\n\n*Solicitante:*\n\n\n*Criticidade:*\nAlta\n\n*Tipo de solicitação:*\nRelatórios e Exportações\n\n*Descrição da solicitação:*\nPessoal, boa tarde! Tudo bem?\nPreciso fazer um levantamento dos chamados abertos nos últimos 3 meses dos clientes abaixo. Podem me apoiar com essa solicitação ou me passar o caminho onde consigo ter acesso a essa informação de forma ágil?\n\nMinistério Público do Estado da ",
+        "resposta_resumida": "_:robot_face: Uso interno do suporte — aguarde a validação do analista._\n\nCompreendo a necessidade de levantar o histórico de chamados desses clientes. Faremos o levantamento dos últimos 3 meses para você, pesquisando em nossos registros de suporte. Em breve, retornaremos com as informações compilad",
+        "status": "pendente_revisao",
+        "correcao": null
+      }
+    ],
     "validadores": [
       {
         "nome": "U096UKMR1KN",
@@ -21,26 +69,36 @@
     ],
     "rejeitadores": [
       {
+        "nome": "U096UKMR1KN",
+        "total": 8
+      }
+    ],
+    "corretores": [
+      {
         "nome": "Alexsandra Lima",
         "total": 4
+      },
+      {
+        "nome": "U096UKMR1KN",
+        "total": 1
       }
     ],
     "por_produto": [
       {
         "produto": "Geral",
         "validados": 1,
-        "rejeitados": 4,
-        "corrigidos": 4
-      },
-      {
-        "produto": "4biz",
-        "validados": 3,
-        "rejeitados": 0,
-        "corrigidos": 0
+        "rejeitados": 5,
+        "corrigidos": 5
       },
       {
         "produto": "LM",
         "validados": 2,
+        "rejeitados": 3,
+        "corrigidos": 0
+      },
+      {
+        "produto": "4biz",
+        "validados": 3,
         "rejeitados": 0,
         "corrigidos": 0
       },
