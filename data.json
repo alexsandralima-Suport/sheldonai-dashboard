@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-24T17:15:24.263322",
+  "generated_at": "2026-07-24T18:15:23.889292",
   "base": {
     "total_casos": 224,
-    "total_faqs": 99,
+    "total_faqs": 100,
     "total_playbooks": 34,
-    "ultima_atualizacao": "2026-07-23T09:57:43.640870"
+    "ultima_atualizacao": "2026-07-24"
   },
   "feedback": {
     "total": 15,
