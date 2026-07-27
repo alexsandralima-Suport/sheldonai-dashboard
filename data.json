@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T09:15:24.362769",
+  "generated_at": "2026-07-27T09:31:33.115008",
   "base": {
     "total_casos": 224,
     "total_faqs": 100,
@@ -7,14 +7,47 @@
     "ultima_atualizacao": "2026-07-24"
   },
   "feedback": {
-    "total": 12,
+    "total": 14,
     "positivos": 7,
-    "negativos": 5,
+    "negativos": 7,
     "corrigidos": 5,
-    "pendentes_count": 0,
-    "taxa_acerto": 58.3,
-    "taxa_efetividade": 100.0,
-    "pendentes_revisao": [],
+    "pendentes_count": 2,
+    "taxa_acerto": 50.0,
+    "taxa_efetividade": 85.7,
+    "pendentes_revisao": [
+      {
+        "id": "FB-0016",
+        "timestamp": "2026-07-27T09:18:14.063026",
+        "message_ts": "1784559847.738359",
+        "channel": "C03442X3F5M",
+        "thread_ts": "1784559815.476749",
+        "user_id": "U096UKMR1KN",
+        "user_name": "Alexsandra Lima",
+        "emoji": "thumbsdown",
+        "avaliacao": "negativa",
+        "pergunta": "*Tipo Suporte:* \nSuporte Lawsuit Managment\n\n*Nome do cliente:* \nFreire, Gerbasi e Bittencourt\n\n*Título:*\ndúvidas da API\n\n*Solicitante:*\n\n\n*Criticidade:*\nMédia\n\n*Tipo de solicitação:*\nDúvidas gerais\n\n*Descrição da solicitação:*\nbom dia, pessoal! tudo bem? o cliente está testando a API para os serviços de: Monitoramento de Processos; Diários Oficiais; Intimações; Autos Processuais.\n\neles levantaram algumas dúvidas: \n1) Jus Brasil tem como obter o texto (inteiro teor) das publicações/intimações de ",
+        "resposta_resumida": "_:robot_face: Uso interno do suporte — aguarde a validação do analista._\n\nOlá! Entendi suas dúvidas sobre a API e vamos te ajudar a esclarecer cada ponto.\n\n1.  **Obter o texto (inteiro teor) das publicações/intimações via API:**\n    *   Para as intimações que fazem parte dos autos processuais, é pos",
+        "status": "pendente_revisao",
+        "correcao": null,
+        "thread_link": "https://jusbrasil.slack.com/archives/C03442X3F5M/p1784559815476749"
+      },
+      {
+        "id": "FB-0017",
+        "timestamp": "2026-07-27T09:18:15.462487",
+        "message_ts": "1784654556.036879",
+        "channel": "C03442X3F5M",
+        "thread_ts": "1784654541.999099",
+        "user_id": "U096UKMR1KN",
+        "user_name": "Alexsandra Lima",
+        "emoji": "thumbsdown",
+        "avaliacao": "negativa",
+        "pergunta": "*Tipo Suporte:* \nSuporte Lawsuit Managment\n\n*Nome do cliente:* \nCS\n\n*Título:*\nLevantamento dos ultimos chamados\n\n*Solicitante:*\n\n\n*Criticidade:*\nAlta\n\n*Tipo de solicitação:*\nRelatórios e Exportações\n\n*Descrição da solicitação:*\nPessoal, boa tarde! Tudo bem?\nPreciso fazer um levantamento dos chamados abertos nos últimos 3 meses dos clientes abaixo. Podem me apoiar com essa solicitação ou me passar o caminho onde consigo ter acesso a essa informação de forma ágil?\n\nMinistério Público do Estado da ",
+        "resposta_resumida": "_:robot_face: Uso interno do suporte — aguarde a validação do analista._\n\nCompreendo a necessidade de levantar o histórico de chamados desses clientes. Faremos o levantamento dos últimos 3 meses para você, pesquisando em nossos registros de suporte. Em breve, retornaremos com as informações compilad",
+        "status": "pendente_revisao",
+        "correcao": null,
+        "thread_link": "https://jusbrasil.slack.com/archives/C03442X3F5M/p1784654541999099"
+      }
+    ],
     "validadores": [
       {
         "nome": "Alexsandra Lima",
@@ -24,7 +57,7 @@
     "rejeitadores": [
       {
         "nome": "Alexsandra Lima",
-        "total": 5
+        "total": 7
       }
     ],
     "corretores": [
@@ -41,14 +74,14 @@
         "corrigidos": 5
       },
       {
-        "produto": "4biz",
-        "validados": 3,
-        "rejeitados": 0,
+        "produto": "LM",
+        "validados": 2,
+        "rejeitados": 2,
         "corrigidos": 0
       },
       {
-        "produto": "LM",
-        "validados": 2,
+        "produto": "4biz",
+        "validados": 3,
         "rejeitados": 0,
         "corrigidos": 0
       },
