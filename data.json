@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T15:15:24.374919",
+  "generated_at": "2026-09-28T16:15:24.500051",
   "base": {
     "total_casos": 276,
     "total_faqs": 140,
@@ -7,13 +7,13 @@
     "ultima_atualizacao": "2026-09-18T11:04:37.955311"
   },
   "feedback": {
-    "total": 14,
+    "total": 15,
     "positivos": 7,
-    "negativos": 7,
+    "negativos": 8,
     "corrigidos": 5,
-    "pendentes_count": 2,
-    "taxa_acerto": 50.0,
-    "taxa_efetividade": 85.7,
+    "pendentes_count": 3,
+    "taxa_acerto": 46.7,
+    "taxa_efetividade": 80.0,
     "pendentes_revisao": [
       {
         "id": "FB-0016",
@@ -46,6 +46,22 @@
         "status": "pendente_revisao",
         "correcao": null,
         "thread_link": "https://jusbrasil.slack.com/archives/C03442X3F5M/p1784654541999099"
+      },
+      {
+        "id": "FB-0018",
+        "timestamp": "2026-09-28T16:09:13.723348",
+        "message_ts": "1790622375.454419",
+        "channel": "C03442X3F5M",
+        "thread_ts": "1790622363.446559",
+        "user_id": "U096UKMR1KN",
+        "user_name": "Alexsandra Lima",
+        "emoji": "thumbsdown",
+        "avaliacao": "negativa",
+        "pergunta": "*Tipo Suporte:* \nSuporte Consulta Pro\n\n*Nome do cliente:* \nFernanda Gehm Advogados\n\n*Título:*\nLiberação API BGC\n\n*Solicitante:*\n\n\n*Criticidade:*\nCrítica\n\n*Tipo de solicitação:*\nUsuários (Cadastro/Permissões/Recebimento de e-mails)\n\n*Descrição da solicitação:*\nBoa tarde pessoal, tudo bem?\n\nConseguem fazer a liberação da API BGC para o cliente em questão, por favor?\n\nO e-mail do gestor é: l\n<mailto:thiago@advocaciafernandagehm.com.br|thiago@advocaciafernandagehm.com.br>\n\n*Data de Abertura:*\nSeptem",
+        "resposta_resumida": "_:robot_face: Uso interno do suporte — aguarde a validação do analista._\n\nOlá! Estamos providenciando a liberação da API de Consulta Pro (Background Check) para vocês. Assim que o acesso estiver configurado, avisaremos.\n\n*Atuacao do suporte:*\n1.  Acessar o sistema OP (Operational Panel).\n2.  Localiz",
+        "status": "pendente_revisao",
+        "correcao": null,
+        "thread_link": "https://jusbrasil.slack.com/archives/C03442X3F5M/p1790622363446559"
       }
     ],
     "validadores": [
@@ -57,7 +73,7 @@
     "rejeitadores": [
       {
         "nome": "Alexsandra Lima",
-        "total": 7
+        "total": 8
       }
     ],
     "corretores": [
@@ -88,7 +104,7 @@
       {
         "produto": "API",
         "validados": 1,
-        "rejeitados": 0,
+        "rejeitados": 1,
         "corrigidos": 0
       }
     ]
