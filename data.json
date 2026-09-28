@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-28T16:15:24.500051",
+  "generated_at": "2026-09-28T17:15:24.337881",
   "base": {
     "total_casos": 276,
-    "total_faqs": 140,
+    "total_faqs": 141,
     "total_playbooks": 34,
-    "ultima_atualizacao": "2026-09-18T11:04:37.955311"
+    "ultima_atualizacao": "2026-09-28"
   },
   "feedback": {
-    "total": 15,
+    "total": 16,
     "positivos": 7,
-    "negativos": 8,
-    "corrigidos": 5,
+    "negativos": 9,
+    "corrigidos": 6,
     "pendentes_count": 3,
-    "taxa_acerto": 46.7,
-    "taxa_efetividade": 80.0,
+    "taxa_acerto": 43.8,
+    "taxa_efetividade": 81.2,
     "pendentes_revisao": [
       {
         "id": "FB-0016",
@@ -73,21 +73,21 @@
     "rejeitadores": [
       {
         "nome": "Alexsandra Lima",
-        "total": 8
+        "total": 9
       }
     ],
     "corretores": [
       {
         "nome": "Alexsandra Lima",
-        "total": 5
+        "total": 6
       }
     ],
     "por_produto": [
       {
         "produto": "Geral",
         "validados": 1,
-        "rejeitados": 5,
-        "corrigidos": 5
+        "rejeitados": 6,
+        "corrigidos": 6
       },
       {
         "produto": "LM",
